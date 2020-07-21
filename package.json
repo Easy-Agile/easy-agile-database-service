@@ -1,0 +1,63 @@
+{
+  "name": "easy-agile-database-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Matt Seddon <matt.seddon@easyagile.com>",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/arijea/easy-agile-database-service/src/master/",
+  "scripts": {
+    "build:watch": "tsc --project . --watch",
+    "build": "tsc --project .",
+    "lint": "eslint --fix",
+    "setup": "npm run typeorm migration:run",
+    "start": "tsc --watch --project .",
+    "test:watch": "jest --watch",
+    "test": "jest",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
+  },
+  "lint-staged": {
+    "*.js": [
+      "exitzero eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org:arijea/easy-agile-database-service.git"
+  },
+  "dependencies": {
+    "lodash": "^2.0.0",
+    "pg": "^6.4.2",
+    "pg-hstore": "^2.3.2",
+    "typeorm": "^0.2.25"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/lodash": "^4.14.157",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^3.6.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-airbnb-typescript": "^7.2.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.8.2",
+    "exitzero": "^1.0.1",
+    "husky": "^4.2.3",
+    "jest": "^26.1.0",
+    "jest-date-mock": "^1.0.8",
+    "lint-staged": "^10.0.8",
+    "semver": "^7.1.3",
+    "ts-jest": "^26.1.2",
+    "ts-node": "^8.8.2",
+    "typeorm-model-generator": "^0.4.2",
+    "typescript": "^3.9.7"
+  }
+}
