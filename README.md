@@ -4,9 +4,9 @@ A database service - in a yet-to-be-completed state.
 
 ## Getting started
 
+1. Clone this repository.
 1. Read over the entirety of this README
 1. If you have any questions, please don't hesitate to contact us on the JIRA ticket thread from your application and we would be happy to help.
-1. Fork this repo into your own personal **private** GitHub repo.
 1. Please don't spend all weekend on this task. A rough guide is about six hours of work.
 1. This task is for you. Please ensure you complete all of the work by yourself. The code you write is your own and in your own repo. Please ensure it actually is yours. i.e. No copying and pasting from existing projects.
 
