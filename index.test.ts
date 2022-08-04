@@ -1,12 +1,11 @@
-import { getConnection } from "typeorm";
-import { createDBConnection } from "./index";
+import { createDBConnection, getConnection } from "./index";
 
 import { Addon } from "./entities/Addon";
 
 describe("createDBConnection", () => {
     it("should create connection which can be used to return data", async () => {
         const connection = await createDBConnection();
-        expect(connection.isConnected).toBe(true);
+        expect(connection.isInitialized).toBe(true);
         const key = "com.easyagile.personas";
         const personas = await getConnection()
             .getRepository(Addon)
