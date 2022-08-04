@@ -28,8 +28,6 @@ Please assume that all data transformation is done outside of this code base and
 
 Be ready to discuss your work once you're done!
 
-Note: `Response.test.ts` is setup to use the `test-fixture` and talk directly to the db because the `jsonb` data type is not supported by SQLite.
-
 ## 3rd party code
 
 Please use any of the npm modules you want to create this service. In fact, we don't want you to write everything from scratch. That's just silly.

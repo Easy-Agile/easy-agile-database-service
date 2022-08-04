@@ -14,9 +14,6 @@ export class CreateDb1594962768480 implements MigrationInterface {
         await queryRunner.query("CREATE INDEX \"license_addon_key\" ON \"public\".\"license\" (\"addonKey\") ");
         await queryRunner.query("CREATE TABLE \"public\".\"addon\" (\"key\" character varying(255) NOT NULL, \"name\" character varying(255), \"tagline\" text, \"summary\" text, \"status\" character varying(255), \"iconUrl\" character varying(255), \"createdAt\" TIMESTAMP WITH TIME ZONE NOT NULL, \"updatedAt\" TIMESTAMP WITH TIME ZONE NOT NULL, CONSTRAINT \"PK_0f663915e2ba64810e41449dcce\" PRIMARY KEY (\"key\"))");
         await queryRunner.query("CREATE UNIQUE INDEX \"addon_pkey\" ON \"public\".\"addon\" (\"key\") ");
-        await queryRunner.query("CREATE TABLE \"public\".\"response\" (\"id\" SERIAL NOT NULL, \"data\" jsonb NOT NULL, \"fromDate\" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT current_timestamp, \"toDate\" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT 'infinity'::timestamp, CONSTRAINT \"PK_047877423c703c932383430b247\" PRIMARY KEY (\"id\"))");
-        await queryRunner.query("CREATE INDEX \"IDX_46dc8d9183d71f18f3d409adef\" ON \"public\".\"response\" (\"fromDate\") ");
-        await queryRunner.query("CREATE INDEX \"IDX_8df389b9b1541e4417649264dd\" ON \"public\".\"response\" (\"toDate\") ");
         await queryRunner.query("CREATE TABLE \"public\".\"transaction\" (\"id\" SERIAL NOT NULL, \"orderId\" character varying(255), \"saleDate\" date, \"tier\" character varying(255), \"licenseType\" character varying(255), \"addonKey\" character varying(255), \"addonSen\" character varying(255), \"hosting\" character varying(255), \"billingPeriod\" character varying(255), \"purchasePrice\" double precision, \"vendorAmount\" double precision, \"saleType\" character varying(255), \"startDate\" date, \"endDate\" date, \"createdAt\" TIMESTAMP WITH TIME ZONE NOT NULL, \"updatedAt\" TIMESTAMP WITH TIME ZONE NOT NULL, CONSTRAINT \"PK_fa13c33f0837fcbdd5ab433e2d5\" PRIMARY KEY (\"id\"))");
         await queryRunner.query("CREATE INDEX \"transaction_sale_type\" ON \"public\".\"transaction\" (\"saleType\") ");
         await queryRunner.query("CREATE UNIQUE INDEX \"transaction_pkey\" ON \"public\".\"transaction\" (\"id\") ");
@@ -149,7 +146,6 @@ export class CreateDb1594962768480 implements MigrationInterface {
         await queryRunner.query("DROP TABLE \"public\".\"transaction\"");
         await queryRunner.query("DROP INDEX \"public\".\"IDX_8df389b9b1541e4417649264dd\"");
         await queryRunner.query("DROP INDEX \"public\".\"IDX_46dc8d9183d71f18f3d409adef\"");
-        await queryRunner.query("DROP TABLE \"public\".\"response\"");
         await queryRunner.query("DROP INDEX \"public\".\"addon_pkey\"");
         await queryRunner.query("DROP TABLE \"public\".\"addon\"");
         await queryRunner.query("DROP INDEX \"public\".\"license_addon_key\"");
