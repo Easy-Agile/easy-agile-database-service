@@ -3,7 +3,7 @@ require("dotenv").config();
 module.exports = {
     globals: {
         "ts-jest": {
-            tsConfig: "tsconfig.json",
+            tsconfig: "tsconfig.json",
         },
     },
     moduleFileExtensions: [
@@ -17,4 +17,5 @@ module.exports = {
     transform: {
         "^.+\\.tsx?$": "ts-jest",
     },
+    preset: "ts-jest",
 };

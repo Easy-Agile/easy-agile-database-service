@@ -1,5 +1,5 @@
 import { getConnection } from "typeorm";
-import { createDBConnection } from ".";
+import { createDBConnection } from "./index";
 
 import { Addon } from "./entities/Addon";
 
