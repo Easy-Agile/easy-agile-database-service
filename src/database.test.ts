@@ -1,5 +1,4 @@
-import { createDBConnection, getConnection } from "./index";
-
+import { createDBConnection, getConnection } from "./database";
 import { Addon } from "./entities/Addon";
 
 describe("createDBConnection", () => {

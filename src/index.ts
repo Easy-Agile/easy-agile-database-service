@@ -1,33 +1,36 @@
-import { DataSource } from "typeorm";
-import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
-import { Addon } from "./entities/Addon";
-import { License } from "./entities/License";
-import { LicenseResponse, TransactionResponse } from "./types/Response";
-import { Transaction } from "./entities/Transaction";
+import { createDBConnection, getRepository, License } from "./database";
+import express, { Request, Response } from "express";
 
-import ormconfig from "../ormconfig";
+const app = express();
+app.use("/healthcheck", (request: Request, response: Response) =>{
+    response.sendStatus(200);
+});
 
-const dataSource = new DataSource(ormconfig as PostgresConnectionOptions);
+app.use("/license/:id", async (request: Request, response: Response) =>{
+    const id = request.params.id ? +request.params.id : 0;
+    const license = await getRepository(License).findOneBy({ id });
+    response.send(JSON.stringify(license));
+});
 
-export const createDBConnection = async () => {
-    if (!dataSource.isInitialized) {
-        await dataSource.initialize()
+const startExpressListener = () => {
+    return new Promise<void>((resolve, reject) => {
+        app.listen(8089, () => resolve()).on("error", reject);
+    });
+};
+
+const startServer = async () => {
+    try {
+        await createDBConnection();
+        console.log("Database connection setup successfully");
+
+        await startExpressListener();
+        console.log("Started server on port 8089");
+    } catch (error) {
+        console.error(
+            `Error occurred starting the server ${(error as Error).message}`,
+        );
+        process.exit(1);
     }
-    return dataSource;
-}
-
-export const getConnection = () => {
-    return dataSource;
 };
 
-export const getRepository: DataSource["getRepository"] = (repository) =>
-    getConnection().getRepository(repository);
-
-
-export {
-    Addon,
-    License,
-    LicenseResponse,
-    Transaction,
-    TransactionResponse,
-};
+startServer();
