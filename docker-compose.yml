@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  devcontainer:
+    image: easyagile/easy-agile-database-service-dev-container:0.1
+    build: .
+    container_name: easy-agile-database-service
+    working_dir: /src
+    volumes:
+       - ..:/src
+       - ~/.aws:/home/node/.aws
+    command: sleep infinity
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
