@@ -6,13 +6,13 @@ module.exports = {
         migrationsDir: "migrations",
     },
     entities: [
-        "entities/*",
+        "src/entities/*",
     ],
     logger: runningInProd ? "simple-console" : "advanced-console",
     logging: (runningInProd && !testDeployment) ? ["error"] : ["info", "error"],
     maxQueryExecutionTime: 5000,
     migrations: [
-        "migrations/*",
+        "src/migrations/*",
     ],
     migrationsRun: true,
     migrationsTableName: "migrations",

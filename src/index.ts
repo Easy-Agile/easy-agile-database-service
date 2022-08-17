@@ -5,7 +5,7 @@ import { License } from "./entities/License";
 import { LicenseResponse, TransactionResponse } from "./types/Response";
 import { Transaction } from "./entities/Transaction";
 
-import ormconfig from "./ormconfig";
+import ormconfig from "../ormconfig";
 
 const dataSource = new DataSource(ormconfig as PostgresConnectionOptions);
 
